@@ -1,4 +1,10 @@
 import ExploreBtn  from "@/components/ExploreBtn";
+
+const events = [
+  { image: './images/event1.png', title: 'Event 1' },
+  { image: './images/event2.png', title: 'Event 2' },
+]
+
 const page = () => {
   return (
     <section>
@@ -15,7 +21,7 @@ const page = () => {
         <h3>Featured Events</h3>
 
         <ul className="events">
-          {[1, 2, 3, 4, 5].map((event) => (
+          {events.map((event) => (
             <li key={event} >Event {event}</li>
           ))}
         </ul>
