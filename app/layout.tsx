@@ -33,16 +33,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(
-        "min-h-screen",
-        "antialiased",
-        schibstedGrotesk.variable,
-        martianMono.variable,
-        "font-sans",
-        geist.variable >
-
+      in layout .tsx
+      <body
+        className={cn(
+          "min-h-screen",
+          "antialiased",
+          schibstedGrotesk.variable,
+          martianMono.variable,
+          "font-sans",
+          geist.variable,
+        )} >
         <div className="absolute inset-0 top-0 z-[-1] min-h-screen">
-            <LightRays
+          <LightRays
             raysOrigin="top-center-offset"
             raysColor="#5dfeca"
             raysSpeed={0.5}
@@ -57,14 +59,10 @@ export default function RootLayout({
             fadeDistance={1}
             saturation={1}
           />
-         </div>
-  
-          <main> 
-           {children}
-          </main>
+        </div>
 
+        <main>{children}</main>
       </body>
-    </html >
+    </html>
   );
 }
-
