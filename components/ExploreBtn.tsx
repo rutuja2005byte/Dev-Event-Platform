@@ -4,4 +4,4 @@ const ExploreBtn = () => {
     )
 }
 
-export default ExploreBtn;
+export default ExploreBtn
