@@ -33,7 +33,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      in layout .tsx
       <body
         className={cn(
           "min-h-screen",
