@@ -1,4 +1,4 @@
-import ExploreBtn  from "@/components/Explorebtn";
+import ExploreBtn  from "@/components/ExploreBtn";
 const page = () => {
   return (
     <section>

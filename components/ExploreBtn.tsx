@@ -1,6 +1,8 @@
+'use client';
+
 const ExploreBtn = () => {
     return (
-        <button>ExploreBtn</button>
+        <button onClick = { () => console.log('Click')}>ExploreBtn</button>
     )
 }
 
