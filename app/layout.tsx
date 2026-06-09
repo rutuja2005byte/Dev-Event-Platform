@@ -60,8 +60,8 @@ export default function RootLayout({
          </div>
   
           <main> 
-          {children}
-        </main>
+           {children}
+          </main>
 
       </body>
     </html >
