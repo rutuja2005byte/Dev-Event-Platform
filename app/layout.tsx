@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import {  } from "next/font/google";
+import { Schibsted_Grotesk, Martian_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
