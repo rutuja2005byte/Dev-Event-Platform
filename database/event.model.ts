@@ -1,3 +1,4 @@
+import { resolveUniqueEventSlug } from '@/lib/event-slug';
 import { Schema, model, models, Document, HydratedDocument } from 'mongoose';
 
 // TypeScript interface for Event document
@@ -117,7 +118,10 @@ EventSchema.pre('save', async function () {
 
   // Generate slug only if title changed or document is new
   if (event.isModified('title') || event.isNew) {
-    event.slug = generateSlug(event.title);
+    event.slug = await resolveUniqueEventSlug(
+      event.title,
+      event._id?.toString()
+    );
   }
 
   // Normalize date to ISO format if it's not already
@@ -131,17 +135,6 @@ EventSchema.pre('save', async function () {
   }
 
 });
-
-// Helper function to generate URL-friendly slug
-function generateSlug(title: string): string {
-  return title
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
-    .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
-}
 
 // Helper function to normalize date to ISO format
 function normalizeDate(dateString: string): string {
@@ -185,7 +178,10 @@ EventSchema.index({ slug: 1 }, { unique: true });
 // Create compound index for common queries
 EventSchema.index({ date: 1, mode: 1 });
 
-const Event =
-  models.Event || model<IEvent>('Event', EventSchema);
+if (models.Event) {
+  delete models.Event;
+}
+
+const Event = model<IEvent>('Event', EventSchema);
 
 export default Event;
