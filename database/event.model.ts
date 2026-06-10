@@ -185,5 +185,7 @@ EventSchema.index({ slug: 1 }, { unique: true });
 // Create compound index for common queries
 EventSchema.index({ date: 1, mode: 1 });
 
-export const Event =
+const Event =
   models.Event || model<IEvent>('Event', EventSchema);
+
+export default Event;

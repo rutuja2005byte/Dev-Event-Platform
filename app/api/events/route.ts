@@ -1,6 +1,6 @@
 import connectDB from '@/lib/mongodb';
 import {NextRequest, NextResponse} from 'next/server';
-import Event from '@database/event.model';
+import Event from '@/database/event.model';
 
 export async function POST(req: NextRequest) {
     try {
