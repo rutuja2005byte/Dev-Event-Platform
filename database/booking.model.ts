@@ -1,5 +1,5 @@
-import { Schema, model, models, Document, Types } from 'mongoose';
-import Event from './event.model';
+import { Schema, model, models, Document, Types, HydratedDocument } from 'mongoose';
+import { Event } from './event.model';
 
 // TypeScript interface for Booking document
 export interface IBooking extends Document {
@@ -8,6 +8,8 @@ export interface IBooking extends Document {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export type BookingDocument = HydratedDocument<IBooking>;
 
 const BookingSchema = new Schema<IBooking>(
   {
@@ -69,6 +71,5 @@ BookingSchema.index({ email: 1 });
 
 // Enforce one booking per events per email
 BookingSchema.index({ eventId: 1, email: 1 }, { unique: true, name: 'uniq_event_email' });
-const Booking = models.Booking || model<IBooking>('Booking', BookingSchema);
-
-export default Booking;
+export const Booking =
+  models.Booking || model<IBooking>('Booking', BookingSchema);
