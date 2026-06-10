@@ -1,85 +1,98 @@
-export type EventItem = {
-  title: string;
-  image: string; // path under /public
-  slug: string;
-  location: string;
-  date: string; // human friendly
-  time: string; // human friendly
-  url?: string;
-  tags?: string[];
-};
-
-export const events: EventItem[] = [
+export const events = [
   {
-    title: 'WWDC 2026',
-    image: '/images/event1.png',
-    slug: 'wwdc-2026',
-    location: 'Apple Park, Cupertino, CA (and online)',
-    date: 'June 8–12, 2026',
-    time: 'All day',
-    url: 'https://developer.apple.com/wwdc/',
-    tags: ['apple', 'ios', 'macos']
+    slug: "react-conf-2024",
+    image: "/images/event1.png",
+    title: "React Conf 2024",
+    location: "San Francisco, CA",
+    date: "March 15, 2024",
+    time: "9:00 AM - 6:00 PM",
   },
   {
-    title: 'React Conf 2026',
-    image: '/images/event2.png',
-    slug: 'react-conf-2026',
-    location: 'San Francisco, CA (hybrid)',
-    date: 'November 2–3, 2026',
-    time: '09:00 – 18:00 PST',
-    url: 'https://reactjs.org/community/conferences.html',
-    tags: ['react', 'frontend', 'javascript']
+    slug: "nextjs-summit",
+    image: "/images/event2.png",
+    title: "Next.js Summit",
+    location: "Austin, TX",
+    date: "April 22, 2024",
+    time: "10:00 AM - 5:00 PM",
   },
   {
-    title: 'JSConf EU 2026',
-    image: '/images/event3.png',
-    slug: 'jsconf-eu-2026',
-    location: 'Berlin, Germany',
-    date: 'September 14–16, 2026',
-    time: '09:30 – 17:30 CEST',
-    url: 'https://jsconf.eu/',
-    tags: ['javascript', 'web']
+    slug: "javascript-world",
+    image: "/images/event3.png",
+    title: "JavaScript World Conference",
+    location: "New York, NY",
+    date: "May 8, 2024",
+    time: "8:30 AM - 7:00 PM",
   },
   {
-    title: 'NodeConf EU 2026',
-    image: '/images/event4.png',
-    slug: 'nodeconf-eu-2026',
-    location: 'Lisbon, Portugal',
-    date: 'October 6–8, 2026',
-    time: '10:00 – 17:00 WET',
-    url: 'https://www.nodeconf.eu/',
-    tags: ['nodejs', 'backend']
+    slug: "ai-hackathon-2024",
+    image: "/images/event4.png",
+    title: "AI Innovation Hackathon",
+    location: "Seattle, WA",
+    date: "June 14-16, 2024",
+    time: "48 Hours",
   },
   {
-    title: 'HackZurich 2026',
-    image: '/images/event5.png',
-    slug: 'hackzurich-2026',
-    location: 'Zurich, Switzerland',
-    date: 'September 18–20, 2026',
-    time: '48 hour hackathon',
-    url: 'https://www.hackzurich.com/',
-    tags: ['hackathon', 'students', 'startup']
+    slug: "web3-developer-meetup",
+    image: "/images/event5.png",
+    title: "Web3 Developer Meetup",
+    location: "Miami, FL",
+    date: "July 20, 2024",
+    time: "6:00 PM - 9:00 PM",
   },
   {
-    title: 'DevOpsDays 2026 (London)',
-    image: '/images/event6.png',
-    slug: 'devopsdays-london-2026',
-    location: 'London, UK',
-    date: 'October 20, 2026',
-    time: '09:00 – 17:00 BST',
-    url: 'https://devopsdays.org/events/2026-london/',
-    tags: ['devops', 'cloud', 'infrastructure']
+    slug: "fullstack-conference",
+    image: "/images/event6.png",
+    title: "Full Stack Conference",
+    location: "Denver, CO",
+    date: "August 12, 2024",
+    time: "9:00 AM - 6:00 PM",
   },
   {
-    title: 'Full-Stack Dev Meetup — Metro City',
-    image: '/images/event-full.png',
-    slug: 'fullstack-meetup-metrocity-2026',
-    location: 'Metro City — Community Hub',
-    date: 'July 15, 2026',
-    time: '18:30 – 20:30',
-    url: '',
-    tags: ['meetup', 'networking']
-  }
+    slug: "devops-unleashed",
+    image: "/images/event1.png",
+    title: "DevOps Unleashed",
+    location: "Chicago, IL",
+    date: "September 5, 2024",
+    time: "8:00 AM - 5:30 PM",
+  },
+  {
+    slug: "mobile-dev-summit",
+    image: "/images/event2.png",
+    title: "Mobile Development Summit",
+    location: "Los Angeles, CA",
+    date: "October 18, 2024",
+    time: "9:30 AM - 6:00 PM",
+  },
+  {
+    slug: "cybersecurity-conference",
+    image: "/images/event3.png",
+    title: "Cybersecurity Conference",
+    location: "Boston, MA",
+    date: "November 2, 2024",
+    time: "8:00 AM - 7:00 PM",
+  },
+  {
+    slug: "data-science-hackathon",
+    image: "/images/event4.png",
+    title: "Data Science Hackathon",
+    location: "San Diego, CA",
+    date: "December 7-9, 2024",
+    time: "72 Hours",
+  },
+  {
+    slug: "cloud-native-meetup",
+    image: "/images/event5.png",
+    title: "Cloud Native Meetup",
+    location: "Portland, OR",
+    date: "January 15, 2025",
+    time: "6:30 PM - 9:00 PM",
+  },
+  {
+    slug: "frontend-masters",
+    image: "/images/event6.png",
+    title: "Frontend Masters Conference",
+    location: "Nashville, TN",
+    date: "February 28, 2025",
+    time: "9:00 AM - 5:00 PM",
+  },
 ];
-
-export default events;
