@@ -17,7 +17,16 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}
                 <p className="mt-2">{description}</p>
             </div>
 
-            
+            <div className="details"> 
+            { /* left side - Event Content */ }
+                <div className="content">
+                    <Image src={image} alt="Event Banner" width={800} height={800} className="banner" />
+                </div>
+            { /* Right side - Booking form  */ } 
+                <aside className="booking">
+                    <p className="text-lg font-semibold">Book Event</p>
+                </aside>
+            </div>
         </section>
     )
 }
