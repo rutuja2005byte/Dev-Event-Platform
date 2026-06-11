@@ -21,6 +21,12 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}
             { /* left side - Event Content */ }
                 <div className="content">
                     <Image src={image} alt="Event Banner" width={800} height={800} className="banner" />
+
+                    <section className="flex-col-gap-2">
+                        <h2>Overview</h2>
+                        <p>{overview}</p>
+                    </section>
+
                 </div>
             { /* Right side - Booking form  */ } 
                 <aside className="booking">
