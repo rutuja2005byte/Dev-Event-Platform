@@ -34,6 +34,12 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}
                         <p>{overview}</p>
                     </section>
 
+                    <section className="flex-col-gap-2">
+                        <h2>Event Details</h2>
+
+                        <EventDetailItem icon="/icons/calendar.svg" alt="calendar" label={date} />
+                    </section>
+
                 </div>
             { /* Right side - Booking form  */ } 
                 <aside className="booking">
