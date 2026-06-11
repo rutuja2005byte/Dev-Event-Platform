@@ -24,7 +24,7 @@ const EventAgenda = ({ agendaItems }: {agendaItems: string[] }) => {
 const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}) => {
     const { slug } = await params;
     const request = await fetch(`${BASE_URL}/api/events/${slug}`);
-    const { event : { description, image, overview, date, time, location, mode, agenda, audience, tags}} = await request.json();
+    const { event : { description, image, overview, date, time, location, mode, agenda, audience, organizer, tags}} = await request.json();
 
     if(!description) return notFound();
 
@@ -55,7 +55,12 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}
                         <EventDetailItem icon="/icons/audience.svg" alt="audience" label={audience} />
                     </section>
 
-                    <EventAgenda agendaItems={JSON.parse(agenda[0])} />
+                    <EventAgenda agendaItems={(agenda)} />
+
+                    <section className="flex-col-gap-2">
+                        <h2>Organizer</h2>
+                        <p>{organizer}</p>
+                    </section>
 
                 </div>
             { /* Right side - Booking form  */ } 
