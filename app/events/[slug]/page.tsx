@@ -55,6 +55,8 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}
                         <EventDetailItem icon="/icons/audience.svg" alt="audience" label={audience} />
                     </section>
 
+                    <EventAgenda agendaItems={JSON.parse(agenda[0])} />
+
                 </div>
             { /* Right side - Booking form  */ } 
                 <aside className="booking">
