@@ -10,6 +10,17 @@ const EventDetailItem = ({ icon, alt, label}: {icon: string; alt: string; label:
     </div>
 )
 
+const EventAgenda = ({ agendaItems }: {agendaItems: string[] }) => {
+    <div className = "agenda">
+        <h2>Agenda</h2>
+        <ul>
+            {agendaItems.map((item) => (
+                <li key={item}>{item}</li>
+            ))}
+        </ul>
+    </div>
+}
+
 const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}) => {
     const { slug } = await params;
     const request = await fetch(`${BASE_URL}/api/events/${slug}`);
