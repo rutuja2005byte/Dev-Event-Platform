@@ -11,7 +11,14 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}
     if(!description) return notFound();
 
     return (
-        
+        <section id="event" >
+            <div className="header">
+                <h1>Event Description</h1>
+                <p className="mt-2">{description}</p>
+            </div>
+
+            
+        </section>
     )
 }
 
