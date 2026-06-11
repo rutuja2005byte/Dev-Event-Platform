@@ -1,7 +1,14 @@
 import {notFound} from "next/navigation";
 import Image from "next/image";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
+const EventDetailItem = ({ icon, alt, label}: {icon: string; alt: string; label: string;}) => (
+    <div className="flex-row-gap-2 items-center">
+        <Image  src={icon} alt={alt} width={17} height={17}/>
+        <p>{label}</p>
+    </div>
+)
 
 const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}) => {
     const { slug } = await params;
