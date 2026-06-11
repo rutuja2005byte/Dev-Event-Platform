@@ -1,5 +1,4 @@
 import connectDB from '@/lib/mongodb';
-import { resolveUniqueEventSlug } from '@/lib/event-slug';
 import { getErrorMessage, parseFormArrayField } from '@/lib/parse-form-array';
 import { resolveEventImage } from '@/lib/upload-image';
 import { NextRequest, NextResponse } from 'next/server';
@@ -33,7 +32,16 @@ export async function POST(req: NextRequest) {
     }
 
     if (typeof event.title === 'string') {
-      event.slug = await resolveUniqueEventSlug(event.title);
+      const existingEvent = await Event.findOne({
+        title: { $regex: new RegExp(`^${event.title.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') },
+      }).select('_id');
+
+      if (existingEvent) {
+        return NextResponse.json(
+          { message: 'An event with this title already exists' },
+          { status: 409 }
+        );
+      }
     }
 
     const createdEvent = await Event.create(event);

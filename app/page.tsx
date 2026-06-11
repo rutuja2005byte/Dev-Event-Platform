@@ -1,11 +1,9 @@
-import ExploreBtn  from "@/components/ExploreBtn";
+import ExploreBtn from "@/components/ExploreBtn";
 import EventCard from "@/components/EventCard";
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import { getEvents } from "@/lib/events";
 
 const page = async () => {
-  const response = await fetch(`${BASE_URL}/api/events`);
-  const { events } = await response.json();
+  const events = await getEvents();
 
   return (
     <section>
@@ -22,9 +20,16 @@ const page = async () => {
         <h3>Featured Events</h3>
 
         <ul className="events list-none p-0 m-0">
-          {events && events.length > 0 && events.map((event: IEvent) => (
-            <li key={event.slug} className="list-none">
-              <EventCard {...event} />
+          {events.length > 0 && events.map((event) => (
+            <li key={event.id} className="list-none">
+              <EventCard
+                title={event.title}
+                image={event.image}
+                slug={event.slug}
+                location={event.location}
+                date={event.date}
+                time={event.time}
+              />
             </li>
           ))}
         </ul>
