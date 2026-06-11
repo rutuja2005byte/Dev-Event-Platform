@@ -9,5 +9,11 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}
 
     if(!event) return notFound();
 
-    
+    return (
+        <section id="event" >
+            <h1>Event Details: <br /> {slug}</h1>
+        </section>
+    )
 }
+
+export default EventDetailsPage;
