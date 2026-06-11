@@ -21,7 +21,7 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}
         <section id="event" >
             <div className="header">
                 <h1>Event Description</h1>
-                <p className="mt-2">{description}</p>
+                <p>{description}</p>
             </div>
 
             <div className="details"> 
