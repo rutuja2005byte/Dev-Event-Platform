@@ -38,10 +38,10 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}
                         <h2>Event Details</h2>
 
                         <EventDetailItem icon="/icons/calendar.svg" alt="calendar" label={date} />
-                        <EventDetailItem icon="/icons/calendar.svg" alt="calendar" label={date} />
-                        <EventDetailItem icon="/icons/calendar.svg" alt="calendar" label={date} />
-                        <EventDetailItem icon="/icons/calendar.svg" alt="calendar" label={date} />
-                        <EventDetailItem icon="/icons/calendar.svg" alt="calendar" label={date} />
+                        <EventDetailItem icon="/icons/clock.svg" alt="clock" label={time} />
+                        <EventDetailItem icon="/icons/pin.svg" alt="pin" label={location} />
+                        <EventDetailItem icon="/icons/mode.svg" alt="location" label={mode} />
+                        <EventDetailItem icon="/icons/audience.svg" alt="audience" label={audience} />
                     </section>
 
                 </div>
