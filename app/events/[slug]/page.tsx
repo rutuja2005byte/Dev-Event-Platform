@@ -16,7 +16,7 @@ const EventDetailItem = ({ icon, alt, label}: {icon: string; alt: string; label:
     </div>
 )
 
-const EventAgenda = ({ agendaItems }: {agendaItems: string[] }) => {
+const EventAgenda = ({ agendaItems }: {agendaItems: string[] }) => (
     <div className = "agenda">
         <h2>Agenda</h2>
         <ul>
@@ -25,15 +25,15 @@ const EventAgenda = ({ agendaItems }: {agendaItems: string[] }) => {
             ))}
         </ul>
     </div>
-}
+)
 
-const EventTags = ({ tags }: {tags: string[] }) => {
+const EventTags = ({ tags }: {tags: string[] }) => (
     <div className="flex flex-row gap-1.5 flex-wrap">
         {tags.map((tag) => (
             <div className="pill" key={tag}>{tag}</div>
         ))}
     </div>
-}
+)
 
 const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}) => {
     'use cache'
