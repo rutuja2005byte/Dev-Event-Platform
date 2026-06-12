@@ -9,7 +9,7 @@ const page = async () => {
   'use cache';
   cacheLife('hours');
   const response = await fetch(`${BASE_URL}/api/events`);
-  const { event } = await response.json();
+  const { events } = await response.json();
 
   return (
     <section>
@@ -26,7 +26,7 @@ const page = async () => {
         <h3>Featured Events</h3>
 
         <ul className="events list-none p-0 m-0">
-          {event.length > 0 && event.map((event) => (
+          {events.length > 0 && events.map((event) => (
             <li key={event.id} className="list-none">
               <EventCard
                 title={event.title}
