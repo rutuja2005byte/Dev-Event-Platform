@@ -8,9 +8,9 @@ export const createBooking = async ({ eventId, slug, email } : { eventId: string
         await connectDB();
         const booking = (await Booking.create({ eventId, slug, email })).lean();
         
-        return { success: true, booking };
+        return { success: true};
     }catch (e) {
         console.error(' create booking failed ', e);
-        return { success: false, error: e};
+        return { success: false};
     }
 }
