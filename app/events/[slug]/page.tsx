@@ -31,10 +31,33 @@ const EventTags = ({ tags }: {tags: string[] }) => {
 
 const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}) => {
     const { slug } = await params;
-    const request = await fetch(`${BASE_URL}/api/events/${slug}`);
-
     
-    const { event : { description, image, overview, date, time, location, mode, agenda, audience, organizer, tags}} = await request.json();
+    let event;
+    try {
+        const request = await fetch(`${BASE_URL}/api/events/${slug}`,{
+            next: { revalidate: 60}
+        });
+
+        if(!request.ok){
+            if(request.status == 404){
+                return notFound();
+            }
+            throw new Error (`Failed to fetch event: ${request.statusText}`);
+        }
+
+        const response = await request.json();
+        event = response.event;
+
+        if(!event){
+            return notFound();
+        }    
+    } catch (error) {
+        console.log('Error Fetching event:',error);
+        return notFound;
+    }
+
+
+    const { event : { description, image, overview, date, time, location, mode, agenda, audience, organizer, tags}} = event;
 
     if(!description) return notFound();
 
