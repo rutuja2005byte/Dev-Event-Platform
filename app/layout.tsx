@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
-import {
-  Schibsted_Grotesk,
-  Martian_Mono,
-  Geist,
-} from "next/font/google";
+import { Schibsted_Grotesk, Martian_Mono, Geist } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import LightRays from "@/components/LightRays";
@@ -43,9 +39,9 @@ export default function RootLayout({
           martianMono.variable,
           "font-sans",
           geist.variable,
-        )} >
-
-          <Navbar />
+        )}
+      >
+        <Navbar />
         <div className="absolute inset-0 top-0 z-[-1] min-h-screen">
           <LightRays
             raysOrigin="top-center-offset"
@@ -65,7 +61,9 @@ export default function RootLayout({
         </div>
 
         <PostHogProvider>
-          <main>{children}</main>
+          <main>
+            <Suspense>{children}</Suspense>
+          </main>
         </PostHogProvider>
       </body>
     </html>
