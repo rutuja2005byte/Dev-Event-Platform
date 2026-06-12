@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import LightRays from "@/components/LightRays";
 import Navbar from "@/components/NavBar";
 import PostHogProvider from "@/components/PostHogProvider";
+import { Suspense } from "react";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 

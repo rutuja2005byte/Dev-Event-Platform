@@ -6,6 +6,7 @@ import EventCard from "@/components/EventCard";
 import { IEvent } from "@/database";
 import { cacheLife } from "next/cache";
 
+
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const EventDetailItem = ({ icon, alt, label}: {icon: string; alt: string; label: string;}) => (
@@ -64,7 +65,7 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}
     }
 
 
-    const { event : { description, image, overview, date, time, location, mode, agenda, audience, organizer, tags}} = event;
+    const { _id, description, image, overview, date, time, location, mode, agenda, audience, organizer, tags } = event;
 
     if(!description) return notFound();
 
@@ -122,7 +123,7 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}
                         ) : (
                             <p className="text-sm">Be the first to book your spot!</p>
                         )}
-                        <BookEvent eventId={event._id} slug={event.slug} />
+                        <BookEvent eventId={String(_id)} slug={slug} />
                     </div>
                 </aside>
             </div>
