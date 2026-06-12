@@ -14,7 +14,7 @@ const page = async () => {
   return (
     <section>
       <h1 className="text-center">
-        The Hub for Every Dev <br /> Event You Can&apos;t Miss
+        The Hub for Every Dev <br /> Event You Can't Miss
       </h1>
       <p className="text-center mt-5">
         Hackathons, Meetup, and Conferences , All in One Place
@@ -26,7 +26,7 @@ const page = async () => {
         <h3>Featured Events</h3>
 
         <ul className="events list-none p-0 m-0">
-          {event.length > 0 && event.map((item) => (
+          {event.length > 0 && event.map((event) => (
             <li key={event.id} className="list-none">
               <EventCard
                 title={event.title}

@@ -11,6 +11,6 @@ export const createBooking = async ({ eventId, slug, email } : { eventId: string
         return { success: true, booking };
     }catch (e) {
         console.error(' create booking failed ', e);
-        return { success: false, e: e};
+        return { success: false, error: e};
     }
 }
