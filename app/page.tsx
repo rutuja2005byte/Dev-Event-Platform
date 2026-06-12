@@ -3,9 +3,7 @@ import { cacheLife } from "next/cache";
 import EventCard from "@/components/EventCard";
 import { getEvents } from "@/lib/events";
 
-const BASE_URL = process.env.NEXT_PUBLIC.BASE_URL;
-
-
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const page = async () => {
   'use cache';
@@ -28,7 +26,7 @@ const page = async () => {
         <h3>Featured Events</h3>
 
         <ul className="events list-none p-0 m-0">
-          {events.length > 0 && events.map((event) => (
+          {event.length > 0 && event.map((item) => (
             <li key={event.id} className="list-none">
               <EventCard
                 title={event.title}
