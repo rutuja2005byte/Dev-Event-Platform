@@ -1,64 +1,54 @@
-import connectDB from '@/lib/mongodb';
-import { getErrorMessage, parseFormArrayField } from '@/lib/parse-form-array';
-import { resolveEventImage } from '@/lib/upload-image';
-import { NextRequest, NextResponse } from 'next/server';
+import {NextRequest, NextResponse} from "next/server";
+import { v2 as cloudinary } from 'cloudinary';
+
+import connectDB from "@/lib/mongodb";
 import Event from '@/database/event.model';
 
 export async function POST(req: NextRequest) {
-  try {
-    await connectDB();
+    try {
+        await connectDB();
 
-    const formData = await req.formData();
+        const formData = await req.formData();
 
-    const event: Record<string, unknown> = {};
-    for (const [key, value] of formData.entries()) {
-      if (key === 'image') continue;
-      const cleanKey = key.replace(/\*$/, '').trim();
-      event[cleanKey] = value;
+        let event;
+
+        try {
+            event = Object.fromEntries(formData.entries());
+        } catch (e) {
+            return NextResponse.json({ message: 'Invalid JSON data format'}, { status: 400 })
+        }
+
+        const file = formData.get('image') as File;
+
+        if(!file) return NextResponse.json({ message: 'Image file is required'}, { status: 400 })
+
+        let tags = JSON.parse(formData.get('tags') as string);
+        let agenda = JSON.parse(formData.get('agenda') as string);
+
+        const arrayBuffer = await file.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
+
+        const uploadResult = await new Promise((resolve, reject) => {
+            cloudinary.uploader.upload_stream({ resource_type: 'image', folder: 'DevEvent' }, (error, results) => {
+                if(error) return reject(error);
+
+                resolve(results);
+            }).end(buffer);
+        });
+
+        event.image = (uploadResult as { secure_url: string }).secure_url;
+
+        const createdEvent = await Event.create({
+            ...event,
+            tags: tags,
+            agenda: agenda,
+        });
+
+        return NextResponse.json({ message: 'Event created successfully', event: createdEvent }, { status: 201 });
+    } catch (e) {
+        console.error(e);
+        return NextResponse.json({ message: 'Event Creation Failed', error: e instanceof Error ? e.message : 'Unknown'}, { status: 500 })
     }
-
-    event.image = await resolveEventImage(formData.get('image'));
-
-    if (typeof event.mode === 'string') {
-      event.mode = event.mode.toLowerCase().trim();
-    }
-
-    if (typeof event.agenda === 'string') {
-      event.agenda = parseFormArrayField(event.agenda);
-    }
-
-    if (typeof event.tags === 'string') {
-      event.tags = parseFormArrayField(event.tags);
-    }
-
-    if (typeof event.title === 'string') {
-      const existingEvent = await Event.findOne({
-        title: { $regex: new RegExp(`^${event.title.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') },
-      }).select('_id');
-
-      if (existingEvent) {
-        return NextResponse.json(
-          { message: 'An event with this title already exists' },
-          { status: 409 }
-        );
-      }
-    }
-
-    const createdEvent = await Event.create(event);
-
-    return NextResponse.json(
-      { message: 'Event created successfully', event: createdEvent },
-      { status: 201 }
-    );
-  } catch (error) {
-    console.error('[POST /api/events]', error);
-    const message = getErrorMessage(error);
-
-    return NextResponse.json(
-      { message: 'Event Creation Failed', error: message },
-      { status: 400 }
-    );
-  }
 }
 
 export async function GET() {
