@@ -128,14 +128,6 @@ const EventDetailsPage = async ({ params }: { params: Promise<{ slug: string }>}
                 </aside>
             </div>
 
-            <div className="flex w-full flex-col gap-4 pt-20">
-                <h2>Similar Events</h2>
-                <div className="events">
-                        {similarEvents.length > 0 && similarEvents.map((similarEvents: IEvent) => (
-                            <EventCard key={similarEvents.title} {...similarEvents} />
-                        ))}
-                </div>
-            </div>
         </section>
     )
 }
